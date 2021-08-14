@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Button } from 'theme-ui';
 import { albumContext, Photo } from '../contexts/AlbumContext';
 
 export default function ImageFrame() {
@@ -21,6 +22,9 @@ export default function ImageFrame() {
       files,
     });
   };
+  const triggerDirectoryInput = () => {
+    document.getElementById('dirs')?.dispatchEvent(new MouseEvent('click'));
+  };
   return (
     <div>
       <input
@@ -30,7 +34,9 @@ export default function ImageFrame() {
         directory=""
         webkitdirectory=""
         onChange={readDirectory}
+        style={{ display: `none` }}
       />
+      <Button onClick={triggerDirectoryInput}>Open</Button>
     </div>
   );
 }
