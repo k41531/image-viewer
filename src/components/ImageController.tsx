@@ -1,11 +1,19 @@
+/** @jsx jsx */
 import React, { useContext } from 'react';
-import { IconButton } from 'theme-ui';
+import { IconButton, jsx } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function ImageFrame() {
   const ctx = useContext(albumContext);
   return (
-    <div>
+    <div
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '80%',
+        mx: `auto`,
+      }}
+    >
       <IconButton type="button" onClick={ctx.prev}>
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentcolor">
           <polygon
