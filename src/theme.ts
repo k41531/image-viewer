@@ -21,15 +21,31 @@ export default {
   colors: {
     text: '#fffffe',
     background: '#1f2125',
-    primary: '#07c',
-    secondary: '#30c',
+    primary: '#3eccff',
+    secondary: '#ee00ff',
     muted: '#f6f6f6',
+  },
+  borders: {
+    primary: 'solid 1px #fffffe',
   },
   text: {
     heading: {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
+    },
+  },
+  buttons: {
+    smallOutline: {
+      color: 'text',
+      bg: 'background',
+      border: 'primary',
+      fontSize: 0,
+      paddingY: 0,
+    },
+    secondary: {
+      color: 'text',
+      bg: 'secondary',
     },
   },
   styles: {

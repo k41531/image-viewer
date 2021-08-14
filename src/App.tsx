@@ -7,7 +7,7 @@ import ImageFrame from './components/ImageFrame';
 import OpenFolderButton from './components/OpenFolderButton';
 import ImageController from './components/ImageController';
 import { albumContext, useAlbum } from './contexts/AlbumContext';
-import CounterController from './components/CounterController';
+import Layout from './components/Layout';
 
 const Main = () => {
   const ctx = useAlbum();
@@ -15,10 +15,11 @@ const Main = () => {
     <ThemeProvider theme={theme}>
       <albumContext.Provider value={ctx}>
         <Grid columns={[2, '1fr']}>
-          <ImageFrame />
-          <Box>
+          <Layout>
+            <ImageFrame />
             <ImageController />
-            <CounterController />
+          </Layout>
+          <Box>
             <OpenFolderButton />
           </Box>
         </Grid>
