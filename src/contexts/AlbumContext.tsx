@@ -37,8 +37,10 @@ export const useAlbum = (): AlbumContext => {
   const [album, setAlbum] = useState(defaultAlbum);
   const [index, setIndex] = useState(0);
   const setImage = (p: Album) => setAlbum(p);
-  const next = () =>
+  const next = () => {
+    if (album.files.length === 0) return;
     setIndex((prevIndex) => (prevIndex + 1) % album.files.length);
+  };
   const prev = () =>
     setIndex((prevIndex) =>
       prevIndex ? prevIndex - 1 : album.files.length - 1

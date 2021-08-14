@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import React, { useContext } from 'react';
-import { IconButton, jsx } from 'theme-ui';
+import React, { useCallback, useContext, useState, useRef } from 'react';
+import { Flex, Button, Field, IconButton, jsx } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function ImageFrame() {
