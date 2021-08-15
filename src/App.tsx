@@ -4,7 +4,6 @@ import './App.global.css';
 import { ThemeProvider, Grid, Box, Flex } from 'theme-ui';
 import theme from './theme';
 import ImageFrame from './components/ImageFrame';
-import OpenFolderButton from './components/OpenFolderButton';
 import ImageController from './components/ImageController';
 import { albumContext, useAlbum } from './contexts/AlbumContext';
 import Layout from './components/Layout';
@@ -19,9 +18,7 @@ const Main = () => {
             <ImageFrame />
             <ImageController />
           </Layout>
-          <Box>
-            <OpenFolderButton />
-          </Box>
+          <Box />
         </Grid>
       </albumContext.Provider>
     </ThemeProvider>

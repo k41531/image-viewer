@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button } from 'theme-ui';
+import { NavLink } from 'theme-ui';
 import { albumContext, Photo } from '../contexts/AlbumContext';
 
 export default function ImageFrame() {
@@ -36,7 +36,7 @@ export default function ImageFrame() {
         onChange={readDirectory}
         style={{ display: `none` }}
       />
-      <Button onClick={triggerDirectoryInput}>Open</Button>
+      <NavLink onClick={triggerDirectoryInput}>Open</NavLink>
     </div>
   );
 }
