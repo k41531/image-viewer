@@ -18,7 +18,6 @@ const Main = () => {
             <ImageFrame />
             <ImageController />
           </Layout>
-          <Box />
         </Grid>
       </albumContext.Provider>
     </ThemeProvider>

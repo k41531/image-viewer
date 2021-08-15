@@ -9,7 +9,7 @@ type Props = {
 };
 export default function Layout({ children }: Props) {
   return (
-    <div>
+    <div sx={{ height: '100vh' }}>
       <header
         sx={{
           display: 'flex',
@@ -25,6 +25,7 @@ export default function Layout({ children }: Props) {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
+          height: '75%',
         }}
       >
         <main
