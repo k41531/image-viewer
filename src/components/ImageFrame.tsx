@@ -13,6 +13,7 @@ export default function ImageFrame() {
       sx={{
         display: 'grid',
         placeItems: 'center',
+        height: '100%',
       }}
     >
       {album.album.files.length > 0 && (
@@ -20,7 +21,7 @@ export default function ImageFrame() {
           sx={{
             objectFit: 'contain',
             maxWidth: '100%',
-            height: '80vh',
+            height: '100%',
             mx: 'auto',
           }}
           src={album.album.files[album.index].path}

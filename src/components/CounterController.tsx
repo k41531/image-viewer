@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
-import { Donut, Button, Field, IconButton, jsx } from 'theme-ui';
+import { Flex, Grid, Donut, Button, Field, IconButton, jsx } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function CounterController() {
@@ -33,10 +33,8 @@ export default function CounterController() {
     intervalRef.current = -1;
   };
   return (
-    <div>
-      <Donut value={(count % intervalTime) / intervalTime} />
-      <Button onClick={start}>start</Button>
-      <Button onClick={stop}>stop</Button>
+    <Grid>
+      <h2>Controller</h2>
       <Field
         label="Count"
         name="count"
@@ -44,16 +42,29 @@ export default function CounterController() {
         min="1"
         defaultValue="1"
       />
-      <Field
-        value={intervalTime}
-        label="Interval"
-        name="Interval"
-        type="number"
-        min="1"
-        readOnly
-      />
-      <Button onClick={incInterval}>up</Button>
-      <Button onClick={decInterval}>down</Button>
-    </div>
+      <Flex>
+        <Field
+          value={intervalTime}
+          label="Interval"
+          name="Interval"
+          type="number"
+          min="1"
+          readOnly
+        />
+        <Grid gap={1} mt="auto">
+          <Button variant="smallOutline" onClick={incInterval}>
+            ▲
+          </Button>
+          <Button variant="smallOutline" onClick={decInterval}>
+            ▼
+          </Button>
+        </Grid>
+      </Flex>
+      <Donut mx="auto" value={(count % intervalTime) / intervalTime} />
+      <Button onClick={start}>start</Button>
+      <Button variant="secondary" onClick={stop}>
+        stop
+      </Button>
+    </Grid>
   );
 }
