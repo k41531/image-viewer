@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { ReactNode } from 'react';
-import { jsx, Button, NavLink } from 'theme-ui';
+/** @jsxImportSource theme-ui */
+import React, { ReactNode } from 'react';
 import CounterController from './CounterController';
 import OpenFolderButton from './OpenFolderButton';
 
@@ -39,7 +38,7 @@ export default function Layout({ children }: Props) {
         </main>
         <aside
           sx={{
-            px: 4,
+            padding: '0 32px',
             flexGrow: 1,
             flexBasis: 'sidebar',
             borderLeftStyle: 'solid',
