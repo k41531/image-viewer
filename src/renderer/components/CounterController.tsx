@@ -1,9 +1,19 @@
 import React, { useState, useRef, useContext } from 'react';
-import { Flex, Grid, Donut, Button, Field, Label, Radio } from 'theme-ui';
+import {
+  Flex,
+  Grid,
+  Donut,
+  Button,
+  Field,
+  Label,
+  Radio,
+  Progress,
+} from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function CounterController() {
   const [count, setCount] = useState(0);
+  const [maxCount, setMaxCount] = useState(0);
   const [intervalTime, setIntervalTime] = useState(1);
   const intervalRef = useRef(-1);
   const stateRef = useRef(0);
@@ -15,11 +25,11 @@ export default function CounterController() {
   const decInterval = () => {
     if (intervalTime > 0) setIntervalTime((prev) => prev - 1);
   };
-  const incCount = () => {
-    setCount((prev) => prev + 1);
+  const incMax = () => {
+    setMaxCount((prev) => prev + 1);
   };
-  const decCount = () => {
-    if (count > 0) setCount((prev) => prev - 1);
+  const decMax = () => {
+    if (count > 0) setMaxCount((prev) => prev - 1);
   };
 
   const start = () => {
@@ -38,9 +48,9 @@ export default function CounterController() {
     clearInterval(intervalRef.current);
     intervalRef.current = -1;
   };
-  const handleChangeCount = (event: React.FormEvent) => {
+  const handleChangeMax = (event: React.FormEvent) => {
     const value = event.target.value.replace(/\+|-/gi, '');
-    setCount(Number(value));
+    setMaxCount(Number(value));
   };
 
   const handleChangeInterval = (event: React.FormEvent) => {
@@ -57,18 +67,19 @@ export default function CounterController() {
           name="count"
           type="text"
           pattern="[0-9]*"
-          value={count}
-          onInput={handleChangeCount}
+          value={maxCount}
+          onInput={handleChangeMax}
         />
         <Grid gap={1} mt="auto">
-          <Button variant="smallOutline" onClick={incCount}>
+          <Button variant="smallOutline" onClick={incMax}>
             ▲
           </Button>
-          <Button variant="smallOutline" onClick={decCount}>
+          <Button variant="smallOutline" onClick={decMax}>
             ▼
           </Button>
         </Grid>
       </Flex>
+      <Progress max={1} value={count / maxCount} />
       <Flex>
         <Field
           value={intervalTime}
