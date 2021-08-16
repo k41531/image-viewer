@@ -15,6 +15,12 @@ export default function CounterController() {
   const decInterval = () => {
     if (intervalTime > 0) setIntervalTime((prev) => prev - 1);
   };
+  const incCount = () => {
+    setCount((prev) => prev + 1);
+  };
+  const decCount = () => {
+    if (count > 0) setCount((prev) => prev - 1);
+  };
 
   const start = () => {
     if (intervalRef.current !== -1) {
@@ -32,24 +38,45 @@ export default function CounterController() {
     clearInterval(intervalRef.current);
     intervalRef.current = -1;
   };
+  const handleChangeCount = (event: React.FormEvent) => {
+    const value = event.target.value.replace(/\+|-/gi, '');
+    setCount(Number(value));
+  };
+
+  const handleChangeInterval = (event: React.FormEvent) => {
+    const value = event.target.value.replace(/\+|-/gi, '');
+    setIntervalTime(Number(value));
+  };
+
   return (
     <Grid>
       <h2>Controller</h2>
-      <Field
-        label="Count"
-        name="count"
-        type="number"
-        min="1"
-        defaultValue="1"
-      />
+      <Flex>
+        <Field
+          label="Count"
+          name="count"
+          type="text"
+          pattern="[0-9]*"
+          value={count}
+          onInput={handleChangeCount}
+        />
+        <Grid gap={1} mt="auto">
+          <Button variant="smallOutline" onClick={incCount}>
+            ▲
+          </Button>
+          <Button variant="smallOutline" onClick={decCount}>
+            ▼
+          </Button>
+        </Grid>
+      </Flex>
       <Flex>
         <Field
           value={intervalTime}
           label="Interval"
           name="Interval"
-          type="number"
-          min="1"
-          readOnly
+          type="text"
+          pattern="[0-9]*"
+          onInput={handleChangeInterval}
         />
         <Grid gap={1} mt="auto">
           <Button variant="smallOutline" onClick={incInterval}>
