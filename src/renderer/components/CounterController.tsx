@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
-import { Flex, Grid, Donut, Button, Field, IconButton, jsx } from 'theme-ui';
+import { Flex, Grid, Donut, Button, Field, Label, Radio } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function CounterController() {
@@ -86,6 +86,17 @@ export default function CounterController() {
             ▼
           </Button>
         </Grid>
+      </Flex>
+      <Flex mb={3}>
+        <Label>
+          <Radio name="letter" /> H
+        </Label>
+        <Label>
+          <Radio name="letter" /> M
+        </Label>
+        <Label>
+          <Radio name="letter" /> S
+        </Label>
       </Flex>
       <Donut mx="auto" value={(count % intervalTime) / intervalTime} />
       <Button onClick={start}>start</Button>
