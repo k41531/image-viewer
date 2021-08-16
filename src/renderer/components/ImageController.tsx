@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { IconButton, jsx } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
@@ -8,7 +9,7 @@ export default function ImageFrame() {
   const data = ctx.album.files;
   const image = (key: string, alt: string, src: string) => (
     <img
-      style={{
+      sx={{
         width: '100%',
         maxHeight: '100px',
         objectFit: 'cover',
@@ -39,24 +40,24 @@ export default function ImageFrame() {
 
   return (
     <div
-      style={{
-        margin: '0 auto',
+      sx={{
+        mx: 'auto',
         width: '80%',
       }}
     >
       <div
-        style={{
-          marginTop: '32px',
-          marginBottom: '8px',
+        sx={{
+          mt: '4',
+          mb: '2',
           display: 'grid',
           gridTemplateColumns: 'repeat(8,1fr)',
-          padding: '0 auto',
+          px: 'auto',
         }}
       >
         {thumbnails}
       </div>
       <div
-        style={{
+        sx={{
           display: 'flex',
           justifyContent: 'space-between',
         }}

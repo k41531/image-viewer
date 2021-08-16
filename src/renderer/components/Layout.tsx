@@ -24,7 +24,7 @@ export default function Layout({ children }: Props) {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          height: '75%',
+          height: '95%',
         }}
       >
         <main
@@ -32,13 +32,14 @@ export default function Layout({ children }: Props) {
             flexGrow: 99999,
             flexBasis: 0,
             minWidth: 320,
+            maxHeight: '100%',
           }}
         >
           {children}
         </main>
         <aside
           sx={{
-            padding: '0 32px',
+            px: 4,
             flexGrow: 1,
             flexBasis: 'sidebar',
             borderLeftStyle: 'solid',

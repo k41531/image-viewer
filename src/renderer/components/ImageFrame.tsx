@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React, { useContext } from 'react';
 import { albumContext } from '../contexts/AlbumContext';
 
@@ -8,19 +9,18 @@ export default function ImageFrame() {
 
   return (
     <div
-      style={{
-        display: 'grid',
-        placeItems: 'center',
-        height: '100%',
+      sx={{
+        display: 'flex',
+        height: '80%',
       }}
     >
       {album.album.files.length > 0 && (
         <img
-          style={{
+          sx={{
             objectFit: 'contain',
             maxWidth: '100%',
-            height: '75vh',
-            margin: '0 auto',
+            maxHeight: '100%',
+            mx: 'auto',
           }}
           src={album.album.files[album.index].path}
           alt=""

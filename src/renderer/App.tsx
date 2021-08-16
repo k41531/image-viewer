@@ -13,12 +13,10 @@ const Main = () => {
   return (
     <ThemeProvider theme={theme}>
       <albumContext.Provider value={ctx}>
-        <Grid columns={[2, '1fr']}>
-          <Layout>
-            <ImageFrame />
-            <ImageController />
-          </Layout>
-        </Grid>
+        <Layout>
+          <ImageFrame />
+          <ImageController />
+        </Layout>
       </albumContext.Provider>
     </ThemeProvider>
   );
