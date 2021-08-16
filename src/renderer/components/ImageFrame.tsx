@@ -1,6 +1,5 @@
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 import React, { useContext } from 'react';
-import { jsx } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function ImageFrame() {
@@ -11,9 +10,8 @@ export default function ImageFrame() {
   return (
     <div
       sx={{
-        display: 'grid',
-        placeItems: 'center',
-        height: '100%',
+        display: 'flex',
+        height: '80%',
       }}
     >
       {album.album.files.length > 0 && (
@@ -21,7 +19,7 @@ export default function ImageFrame() {
           sx={{
             objectFit: 'contain',
             maxWidth: '100%',
-            height: '100%',
+            maxHeight: '100%',
             mx: 'auto',
           }}
           src={album.album.files[album.index].path}

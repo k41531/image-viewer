@@ -1,4 +1,4 @@
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { IconButton, jsx } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
@@ -25,9 +25,8 @@ export default function ImageFrame() {
     const file = data[index];
     list.push(image(file.path, file.name, file.path));
   }
-  const [thumbnails, setThumnnails] = React.useState<Array<jsx.JSX.Element>>(
-    list
-  );
+  const [thumbnails, setThumnnails] =
+    React.useState<Array<jsx.JSX.Element>>(list);
   useEffect(() => {
     const tlist: Array<jsx.JSX.Element> = [];
     for (let index = 0; index < data.length; index += 1) {
@@ -42,7 +41,7 @@ export default function ImageFrame() {
   return (
     <div
       sx={{
-        mx: `auto`,
+        mx: 'auto',
         width: '80%',
       }}
     >

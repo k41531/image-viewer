@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { ReactNode } from 'react';
-import { jsx, Button, NavLink } from 'theme-ui';
+/** @jsxImportSource theme-ui */
+import React, { ReactNode } from 'react';
 import CounterController from './CounterController';
 import OpenFolderButton from './OpenFolderButton';
 
@@ -25,7 +24,7 @@ export default function Layout({ children }: Props) {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          height: '75%',
+          height: '95%',
         }}
       >
         <main
@@ -33,6 +32,7 @@ export default function Layout({ children }: Props) {
             flexGrow: 99999,
             flexBasis: 0,
             minWidth: 320,
+            maxHeight: '100%',
           }}
         >
           {children}
