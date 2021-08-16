@@ -14,7 +14,7 @@ export default function ImageFrame() {
     const format = new RegExp('([^s]+(\\.(jpg|jpeg|png))$)', 'i');
     e.target.files.forEach((file: Photo) => {
       if (format.test(file.path)) {
-        files.push({ name: file.name, path: file.path });
+        files.push({ name: file.name, path: `file://${file.path}` });
       }
     });
     ctx.setImage({
