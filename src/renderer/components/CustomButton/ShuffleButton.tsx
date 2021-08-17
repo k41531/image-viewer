@@ -19,7 +19,12 @@ export default function ShuffleButton() {
   };
 
   return (
-    <Button type="button" name="Shuffle" onClick={clickEvent}>
+    <Button
+      type="button"
+      name="Shuffle"
+      onClick={clickEvent}
+      style={{ width: '230px' }}
+    >
       Shuffle
     </Button>
   );
