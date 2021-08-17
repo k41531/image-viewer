@@ -1,28 +1,40 @@
-import React, { useState, useRef, useContext } from 'react';
-import { Flex, Grid, Donut, Button, Field, IconButton, jsx } from 'theme-ui';
+import React, { useState, useRef, useContext, ChangeEventHandler } from 'react';
+import { Flex, Grid, Donut, Button, Label, Radio, Progress } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
+import NumberField from './NumberField';
+import ShuffleButton from './CustomButton/ShuffleButton';
 
 export default function CounterController() {
   const [count, setCount] = useState(0);
+  const [unit, setUnit] = useState(1);
+  const [maxCount, setMaxCount] = useState(0);
   const [intervalTime, setIntervalTime] = useState(1);
   const intervalRef = useRef(-1);
-  const stateRef = useRef(0);
+  const countRef = useRef(0);
   const ctx = useContext(albumContext);
-  stateRef.current = count;
-  const incInterval = () => {
-    setIntervalTime((prev) => prev + 1);
-  };
-  const decInterval = () => {
-    if (intervalTime > 0) setIntervalTime((prev) => prev - 1);
+  countRef.current = count;
+
+  const reset = () => {
+    if (intervalRef.current !== -1) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = -1;
+    }
+    setCount(0);
   };
 
   const start = () => {
     if (intervalRef.current !== -1) {
       return;
     }
+    setCount(1);
     intervalRef.current = window.setInterval(() => {
       setCount((c) => c + 1);
-      if (stateRef.current % intervalTime === 0) ctx.next();
+      if (
+        maxCount &&
+        Math.floor(countRef.current / (intervalTime * unit)) === maxCount + 1
+      )
+        reset();
+      else if (countRef.current % (intervalTime * unit) === 0) ctx.next();
     }, 1000);
   };
   const stop = () => {
@@ -32,39 +44,56 @@ export default function CounterController() {
     clearInterval(intervalRef.current);
     intervalRef.current = -1;
   };
+  const handleChange = (e: React.FormEvent) => {
+    const { value } = e.target;
+    setUnit(Number(value));
+  };
+
   return (
     <Grid>
       <h2>Controller</h2>
-      <Field
+      <NumberField
+        name="Count"
         label="Count"
-        name="count"
-        type="number"
-        min="1"
-        defaultValue="1"
+        value={maxCount}
+        setNumber={setMaxCount}
       />
-      <Flex>
-        <Field
-          value={intervalTime}
-          label="Interval"
-          name="Interval"
-          type="number"
-          min="1"
-          readOnly
-        />
-        <Grid gap={1} mt="auto">
-          <Button variant="smallOutline" onClick={incInterval}>
-            ▲
-          </Button>
-          <Button variant="smallOutline" onClick={decInterval}>
-            ▼
-          </Button>
-        </Grid>
+      <Progress max={1} value={count / (intervalTime * unit) / maxCount} />
+      <NumberField
+        name="Interval"
+        label="Interval"
+        value={intervalTime}
+        setNumber={setIntervalTime}
+      />
+      <Flex mb={3}>
+        <Label>
+          <Radio name="units" value={60 * 60} onChange={handleChange} /> H
+        </Label>
+        <Label>
+          <Radio name="units" value={60} onChange={handleChange} /> M
+        </Label>
+        <Label>
+          <Radio
+            name="units"
+            defaultChecked
+            value={1}
+            onChange={handleChange}
+          />{' '}
+          S
+        </Label>
       </Flex>
-      <Donut mx="auto" value={(count % intervalTime) / intervalTime} />
-      <Button onClick={start}>start</Button>
+      <Donut
+        mx="auto"
+        value={(count % (intervalTime * unit)) / (intervalTime * unit)}
+      />
+      <Button onClick={start}>Start</Button>
       <Button variant="secondary" onClick={stop}>
-        stop
+        Stop
       </Button>
+      <Button variant="secondary" onClick={reset}>
+        Reset
+      </Button>
+      <ShuffleButton />
     </Grid>
   );
 }

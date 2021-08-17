@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import React, { ReactNode } from 'react';
 import CounterController from './CounterController';
-import OpenFolderButton from './OpenFolderButton';
+import OpenFolderButton from './CustomButton/OpenFolderButton';
 
 type Props = {
   children: ReactNode;
