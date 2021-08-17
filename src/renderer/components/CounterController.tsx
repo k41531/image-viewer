@@ -1,15 +1,7 @@
 import React, { useState, useRef, useContext } from 'react';
-import {
-  Flex,
-  Grid,
-  Donut,
-  Button,
-  Field,
-  Label,
-  Radio,
-  Progress,
-} from 'theme-ui';
+import { Flex, Grid, Donut, Button, Label, Radio, Progress } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
+import NumberField from './NumberField';
 
 export default function CounterController() {
   const [count, setCount] = useState(0);
@@ -19,19 +11,6 @@ export default function CounterController() {
   const stateRef = useRef(0);
   const ctx = useContext(albumContext);
   stateRef.current = count;
-  const incInterval = () => {
-    setIntervalTime((prev) => prev + 1);
-  };
-  const decInterval = () => {
-    if (intervalTime > 0) setIntervalTime((prev) => prev - 1);
-  };
-  const incMax = () => {
-    setMaxCount((prev) => prev + 1);
-  };
-  const decMax = () => {
-    if (count > 0) setMaxCount((prev) => prev - 1);
-  };
-
   const start = () => {
     if (intervalRef.current !== -1) {
       return;
@@ -48,56 +27,23 @@ export default function CounterController() {
     clearInterval(intervalRef.current);
     intervalRef.current = -1;
   };
-  const handleChangeMax = (event: React.FormEvent) => {
-    const value = event.target.value.replace(/\+|-/gi, '');
-    setMaxCount(Number(value));
-  };
-
-  const handleChangeInterval = (event: React.FormEvent) => {
-    const value = event.target.value.replace(/\+|-/gi, '');
-    setIntervalTime(Number(value));
-  };
 
   return (
     <Grid>
       <h2>Controller</h2>
-      <Flex>
-        <Field
-          label="Count"
-          name="count"
-          type="text"
-          pattern="[0-9]*"
-          value={maxCount}
-          onInput={handleChangeMax}
-        />
-        <Grid gap={1} mt="auto">
-          <Button variant="smallOutline" onClick={incMax}>
-            ▲
-          </Button>
-          <Button variant="smallOutline" onClick={decMax}>
-            ▼
-          </Button>
-        </Grid>
-      </Flex>
+      <NumberField
+        name="Count"
+        label="Count"
+        value={maxCount}
+        setNumber={setMaxCount}
+      />
       <Progress max={1} value={count / maxCount} />
-      <Flex>
-        <Field
-          value={intervalTime}
-          label="Interval"
-          name="Interval"
-          type="text"
-          pattern="[0-9]*"
-          onInput={handleChangeInterval}
-        />
-        <Grid gap={1} mt="auto">
-          <Button variant="smallOutline" onClick={incInterval}>
-            ▲
-          </Button>
-          <Button variant="smallOutline" onClick={decInterval}>
-            ▼
-          </Button>
-        </Grid>
-      </Flex>
+      <NumberField
+        name="Interval"
+        label="Interval"
+        value={intervalTime}
+        setNumber={setIntervalTime}
+      />
       <Flex mb={3}>
         <Label>
           <Radio name="letter" /> H
