@@ -26,11 +26,12 @@ export default function CounterController() {
     if (intervalRef.current !== -1) {
       return;
     }
+    setCount(1);
     intervalRef.current = window.setInterval(() => {
       setCount((c) => c + 1);
       if (
         maxCount &&
-        Math.floor(countRef.current / (intervalTime * unit)) === maxCount
+        Math.floor(countRef.current / (intervalTime * unit)) === maxCount + 1
       )
         reset();
       else if (countRef.current % (intervalTime * unit) === 0) ctx.next();
@@ -85,9 +86,9 @@ export default function CounterController() {
         mx="auto"
         value={(count % (intervalTime * unit)) / (intervalTime * unit)}
       />
-      <Button onClick={start}>start</Button>
+      <Button onClick={start}>Start</Button>
       <Button variant="secondary" onClick={stop}>
-        stop
+        Stop
       </Button>
       <Button variant="secondary" onClick={reset}>
         Reset
