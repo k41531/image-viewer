@@ -13,6 +13,7 @@ import { FaPlay, FaStop, FaPause } from 'react-icons/fa';
 import { albumContext } from '../contexts/AlbumContext';
 import NumberField from './NumberField';
 import ShuffleButton from './CustomButton/ShuffleButton';
+import Dropdown from './Dropdown';
 
 export default function CounterController() {
   const [count, setCount] = useState(0);
@@ -61,41 +62,12 @@ export default function CounterController() {
 
   return (
     <Grid>
-      <h2>Controller</h2>
-      <NumberField
-        name="Count"
-        label="Count"
-        value={maxCount}
-        setNumber={setMaxCount}
-      />
-      <Progress max={1} value={count / (intervalTime * unit) / maxCount} />
-      <NumberField
-        name="Interval"
-        label="Interval"
-        value={intervalTime}
-        setNumber={setIntervalTime}
-      />
-      <Flex mb={3}>
-        <Label>
-          <Radio name="units" value={60 * 60} onChange={handleChange} /> H
-        </Label>
-        <Label>
-          <Radio name="units" value={60} onChange={handleChange} /> M
-        </Label>
-        <Label>
-          <Radio
-            name="units"
-            defaultChecked
-            value={1}
-            onChange={handleChange}
-          />{' '}
-          S
-        </Label>
-      </Flex>
+      <h2>Image Player</h2>
       <Donut
         mx="auto"
         value={(count % (intervalTime * unit)) / (intervalTime * unit)}
       />
+      <Progress max={1} value={count / (intervalTime * unit) / maxCount} />
       <Flex sx={{ justifyContent: 'space-evenly' }}>
         <IconButton onClick={start}>
           <FaPlay />
@@ -108,6 +80,37 @@ export default function CounterController() {
         </IconButton>
       </Flex>
       <ShuffleButton />
+      <Dropdown>
+        <NumberField
+          name="Count"
+          label="Count"
+          value={maxCount}
+          setNumber={setMaxCount}
+        />
+        <NumberField
+          name="Interval"
+          label="Interval"
+          value={intervalTime}
+          setNumber={setIntervalTime}
+        />
+        <Flex mb={3}>
+          <Label>
+            <Radio name="units" value={60 * 60} onChange={handleChange} /> H
+          </Label>
+          <Label>
+            <Radio name="units" value={60} onChange={handleChange} /> M
+          </Label>
+          <Label>
+            <Radio
+              name="units"
+              defaultChecked
+              value={1}
+              onChange={handleChange}
+            />{' '}
+            S
+          </Label>
+        </Flex>
+      </Dropdown>
     </Grid>
   );
 }
