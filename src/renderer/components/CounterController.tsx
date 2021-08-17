@@ -1,5 +1,15 @@
 import React, { useState, useRef, useContext, ChangeEventHandler } from 'react';
-import { Flex, Grid, Donut, Button, Label, Radio, Progress } from 'theme-ui';
+import {
+  Flex,
+  Grid,
+  Donut,
+  Button,
+  IconButton,
+  Label,
+  Radio,
+  Progress,
+} from 'theme-ui';
+import { FaPlay, FaStop, FaPause } from 'react-icons/fa';
 import { albumContext } from '../contexts/AlbumContext';
 import NumberField from './NumberField';
 import ShuffleButton from './CustomButton/ShuffleButton';
@@ -86,13 +96,17 @@ export default function CounterController() {
         mx="auto"
         value={(count % (intervalTime * unit)) / (intervalTime * unit)}
       />
-      <Button onClick={start}>Start</Button>
-      <Button variant="secondary" onClick={stop}>
-        Stop
-      </Button>
-      <Button variant="secondary" onClick={reset}>
-        Reset
-      </Button>
+      <Flex sx={{ justifyContent: 'space-evenly' }}>
+        <IconButton onClick={start}>
+          <FaPlay />
+        </IconButton>
+        <IconButton onClick={stop}>
+          <FaPause />
+        </IconButton>
+        <IconButton onClick={reset}>
+          <FaStop />
+        </IconButton>
+      </Flex>
       <ShuffleButton />
     </Grid>
   );
