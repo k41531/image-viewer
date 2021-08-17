@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'theme-ui';
-import { albumContext, Photo } from '../contexts/AlbumContext';
+import { albumContext, Photo } from '../../contexts/AlbumContext';
 
 export default function ImageFrame() {
   const ctx = useContext(albumContext);
