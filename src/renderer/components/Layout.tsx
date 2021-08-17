@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import CounterController from './CounterController';
 import OpenFolderButton from './CustomButton/OpenFolderButton';
 

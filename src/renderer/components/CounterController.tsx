@@ -1,9 +1,8 @@
-import React, { useState, useRef, useContext, ChangeEventHandler } from 'react';
+import { FormEvent, useState, useRef, useContext } from 'react';
 import {
   Flex,
   Grid,
   Donut,
-  Button,
   IconButton,
   Label,
   Radio,
@@ -55,7 +54,7 @@ export default function CounterController() {
     clearInterval(intervalRef.current);
     intervalRef.current = -1;
   };
-  const handleChange = (e: React.FormEvent) => {
+  const handleChange = (e: FormEvent) => {
     const { value } = e.target;
     setUnit(Number(value));
   };

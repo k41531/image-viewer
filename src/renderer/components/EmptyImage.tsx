@@ -1,5 +1,4 @@
 /** @jsxImportSource theme-ui */
-import React, { useContext } from 'react';
 import { Text, Box } from '@theme-ui/components';
 
 export default function EmptyImage() {

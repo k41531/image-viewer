@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Button } from '@theme-ui/components';
 import { albumContext } from 'renderer/contexts/AlbumContext';
 

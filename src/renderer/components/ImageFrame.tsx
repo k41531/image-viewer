@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 // import { Heading, Text, Box } from '@theme-ui/components';
 import { albumContext } from '../contexts/AlbumContext';
 import EmptyImage from './EmptyImage';

@@ -1,7 +1,6 @@
-import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.global.css';
-import { ThemeProvider, Grid, Box, Flex } from 'theme-ui';
+import { ThemeProvider } from 'theme-ui';
 import theme from './theme';
 import ImageFrame from './components/ImageFrame';
 import ImageController from './components/ImageController';

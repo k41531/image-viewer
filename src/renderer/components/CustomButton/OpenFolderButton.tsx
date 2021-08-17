@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import { FormEvent, useContext } from 'react';
 import { NavLink } from 'theme-ui';
 import { albumContext, Photo } from '../../contexts/AlbumContext';
 
 export default function ImageFrame() {
   const ctx = useContext(albumContext);
 
-  const readDirectory = (e: React.FormEvent<HTMLInputElement>) => {
+  const readDirectory = (e: FormEvent<HTMLInputElement>) => {
     if (e.target.files.length === 0) return;
     const first = e.target.files[0].path;
     const name = first.split('/').slice(-2)[0];

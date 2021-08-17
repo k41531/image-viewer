@@ -1,15 +1,15 @@
-import React, { InputHTMLAttributes } from 'react';
+import { FormEvent, SetStateAction, InputHTMLAttributes } from 'react';
 import { Field, Flex, Grid, Button } from 'theme-ui';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
   value: number;
-  setNumber: (value: React.SetStateAction<number>) => void;
+  setNumber: (value: SetStateAction<number>) => void;
 }
 
 const NumberField = ({ name, label, value, setNumber }: InputProps) => {
-  const handleChange = (event: React.FormEvent) => {
+  const handleChange = (event: FormEvent) => {
     const number = Number(event.target.value.replace(/\+|-/gi, ''));
     setNumber(number);
   };

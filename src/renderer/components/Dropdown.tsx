@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import { useState, ReactNode } from 'react';
 import { Box, IconButton, Flex, Grid, Text } from '@theme-ui/components';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
