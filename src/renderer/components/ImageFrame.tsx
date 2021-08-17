@@ -1,11 +1,12 @@
 /** @jsxImportSource theme-ui */
 import React, { useContext } from 'react';
+// import { Heading, Text, Box } from '@theme-ui/components';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function ImageFrame() {
   const album = useContext(albumContext);
-  const imageName = album.album.name;
-  const imagePath = album.album.path;
+  // const imageName = album.getImageName();
+  // const imagePath = album.getImagePath();
 
   return (
     <div

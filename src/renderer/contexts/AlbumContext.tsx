@@ -22,6 +22,7 @@ type AlbumContext = {
   next: () => void;
   prev: () => void;
   getImagePath: () => string;
+  getImageName: () => string;
 };
 // context default value
 const defaultContext: AlbumContext = {
@@ -33,6 +34,7 @@ const defaultContext: AlbumContext = {
   next: () => {},
   prev: () => {},
   getImagePath: () => '',
+  getImageName: () => '',
 };
 
 // context object
@@ -57,7 +59,10 @@ export const useAlbum = (): AlbumContext => {
       prevIndex ? prevIndex - 1 : album.files.length - 1
     );
 
-  const getImagePath = () => album.files[order[index]].path;
+  const getImagePath = () =>
+    album.files.length ? album.files[order[index]].path : '';
+  const getImageName = () =>
+    album.files.length ? album.files[order[index]].name : '';
 
   return {
     index,
@@ -68,5 +73,6 @@ export const useAlbum = (): AlbumContext => {
     next,
     prev,
     getImagePath,
+    getImageName,
   };
 };
