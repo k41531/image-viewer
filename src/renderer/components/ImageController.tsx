@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { IconButton, jsx } from 'theme-ui';
+import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
 import { albumContext } from '../contexts/AlbumContext';
 
 export default function ImageFrame() {
@@ -64,24 +65,10 @@ export default function ImageFrame() {
         }}
       >
         <IconButton type="button" onClick={ctx.prev}>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentcolor">
-            <polygon
-              points="23 0,8 12,23 24"
-              fill="none"
-              stroke="currentcolor"
-              strokeWidth={2}
-            />
-          </svg>
+          <FaLongArrowAltLeft size={16} />
         </IconButton>
         <IconButton type="button" onClick={ctx.next}>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentcolor">
-            <polygon
-              points="1 0,16 12,1 24"
-              fill="none"
-              stroke="currentcolor"
-              strokeWidth={2}
-            />
-          </svg>
+          <FaLongArrowAltRight size={16} />
         </IconButton>
       </div>
     </div>
