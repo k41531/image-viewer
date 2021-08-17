@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, ChangeEventHandler } from 'react';
 import { Flex, Grid, Donut, Button, Label, Radio, Progress } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 import NumberField from './NumberField';
@@ -6,6 +6,7 @@ import ShuffleButton from './CustomButton/ShuffleButton';
 
 export default function CounterController() {
   const [count, setCount] = useState(0);
+  const [unit, setUnit] = useState(1);
   const [maxCount, setMaxCount] = useState(0);
   const [intervalTime, setIntervalTime] = useState(1);
   const intervalRef = useRef(-1);
@@ -27,9 +28,12 @@ export default function CounterController() {
     }
     intervalRef.current = window.setInterval(() => {
       setCount((c) => c + 1);
-      if (maxCount && Math.floor(countRef.current / intervalTime) === maxCount)
+      if (
+        maxCount &&
+        Math.floor(countRef.current / (intervalTime * unit)) === maxCount
+      )
         reset();
-      else if (countRef.current % intervalTime === 0) ctx.next();
+      else if (countRef.current % (intervalTime * unit) === 0) ctx.next();
     }, 1000);
   };
   const stop = () => {
@@ -38,6 +42,10 @@ export default function CounterController() {
     }
     clearInterval(intervalRef.current);
     intervalRef.current = -1;
+  };
+  const handleChange = (e: React.FormEvent) => {
+    const { value } = e.target;
+    setUnit(Number(value));
   };
 
   return (
@@ -49,7 +57,7 @@ export default function CounterController() {
         value={maxCount}
         setNumber={setMaxCount}
       />
-      <Progress max={1} value={Math.floor(count / intervalTime) / maxCount} />
+      <Progress max={1} value={count / (intervalTime * unit) / maxCount} />
       <NumberField
         name="Interval"
         label="Interval"
@@ -58,16 +66,25 @@ export default function CounterController() {
       />
       <Flex mb={3}>
         <Label>
-          <Radio name="letter" /> H
+          <Radio name="units" value={60 * 60} onChange={handleChange} /> H
         </Label>
         <Label>
-          <Radio name="letter" /> M
+          <Radio name="units" value={60} onChange={handleChange} /> M
         </Label>
         <Label>
-          <Radio name="letter" /> S
+          <Radio
+            name="units"
+            defaultChecked
+            value={1}
+            onChange={handleChange}
+          />{' '}
+          S
         </Label>
       </Flex>
-      <Donut mx="auto" value={(count % intervalTime) / intervalTime} />
+      <Donut
+        mx="auto"
+        value={(count % (intervalTime * unit)) / (intervalTime * unit)}
+      />
       <Button onClick={start}>start</Button>
       <Button variant="secondary" onClick={stop}>
         stop
