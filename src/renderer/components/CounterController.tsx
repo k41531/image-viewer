@@ -9,16 +9,27 @@ export default function CounterController() {
   const [maxCount, setMaxCount] = useState(0);
   const [intervalTime, setIntervalTime] = useState(1);
   const intervalRef = useRef(-1);
-  const stateRef = useRef(0);
+  const countRef = useRef(0);
   const ctx = useContext(albumContext);
-  stateRef.current = count;
+  countRef.current = count;
+
+  const reset = () => {
+    if (intervalRef.current !== -1) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = -1;
+    }
+    setCount(0);
+  };
+
   const start = () => {
     if (intervalRef.current !== -1) {
       return;
     }
     intervalRef.current = window.setInterval(() => {
       setCount((c) => c + 1);
-      if (stateRef.current % intervalTime === 0) ctx.next();
+      if (maxCount && Math.floor(countRef.current / intervalTime) === maxCount)
+        reset();
+      else if (countRef.current % intervalTime === 0) ctx.next();
     }, 1000);
   };
   const stop = () => {
@@ -38,7 +49,7 @@ export default function CounterController() {
         value={maxCount}
         setNumber={setMaxCount}
       />
-      <Progress max={1} value={count / maxCount} />
+      <Progress max={1} value={Math.floor(count / intervalTime) / maxCount} />
       <NumberField
         name="Interval"
         label="Interval"
@@ -60,6 +71,9 @@ export default function CounterController() {
       <Button onClick={start}>start</Button>
       <Button variant="secondary" onClick={stop}>
         stop
+      </Button>
+      <Button variant="secondary" onClick={reset}>
+        Reset
       </Button>
       <ShuffleButton />
     </Grid>
