@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { Flex, Grid, Donut, Button, Label, Radio, Progress } from 'theme-ui';
 import { albumContext } from '../contexts/AlbumContext';
 import NumberField from './NumberField';
+import ShuffleButton from './ShuffleButton';
 
 export default function CounterController() {
   const [count, setCount] = useState(0);
@@ -60,6 +61,7 @@ export default function CounterController() {
       <Button variant="secondary" onClick={stop}>
         stop
       </Button>
+      <ShuffleButton />
     </Grid>
   );
 }

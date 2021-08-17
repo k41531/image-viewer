@@ -7,6 +7,7 @@ export default function ImageFrame() {
   const ctx = useContext(albumContext);
   const list = [];
   const data = ctx.album.files;
+  const { order } = ctx;
   const image = (key: string, alt: string, src: string) => (
     <img
       sx={{
@@ -32,7 +33,7 @@ export default function ImageFrame() {
     for (let index = 0; index < data.length; index += 1) {
       if (index >= 8) break;
       const i = (index + ctx.index) % data.length;
-      const file = data[i];
+      const file = data[order[i]];
       tlist.push(image(file.path, file.name, file.path));
     }
     setThumnnails(tlist);

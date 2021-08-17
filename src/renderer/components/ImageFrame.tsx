@@ -22,7 +22,7 @@ export default function ImageFrame() {
             maxHeight: '100%',
             mx: 'auto',
           }}
-          src={album.album.files[album.index].path}
+          src={album.getImagePath()}
           alt=""
         />
       )}
