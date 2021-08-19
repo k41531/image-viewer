@@ -16,6 +16,7 @@ export default function ImageFrame() {
         maxHeight: '100px',
         objectFit: 'cover',
         minHeight: '100%',
+        filter: 'brightness(33%)',
       }}
       key={key}
       alt={alt}
