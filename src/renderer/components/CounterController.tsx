@@ -66,7 +66,9 @@ export default function CounterController() {
         mx="auto"
         value={(count % (intervalTime * unit)) / (intervalTime * unit)}
       />
-      <Progress max={1} value={count / (intervalTime * unit) / maxCount} />
+      {maxCount !== 0 && (
+        <Progress max={1} value={count / (intervalTime * unit) / maxCount} />
+      )}
       <Flex sx={{ justifyContent: 'space-evenly' }}>
         <IconButton onClick={start}>
           <FaPlay />
