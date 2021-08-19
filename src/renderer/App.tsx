@@ -2,10 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.global.css';
 import { ThemeProvider } from 'theme-ui';
 import theme from './theme';
-import ImageFrame from './components/ImageFrame';
-import ImageController from './components/ImageController';
 import { albumContext, useAlbum } from './contexts/AlbumContext';
 import Layout from './components/Layout';
+import MainPanel from './components/MainPanel';
 
 const Main = () => {
   const ctx = useAlbum();
@@ -13,8 +12,7 @@ const Main = () => {
     <ThemeProvider theme={theme}>
       <albumContext.Provider value={ctx}>
         <Layout>
-          <ImageFrame />
-          <ImageController />
+          <MainPanel />
         </Layout>
       </albumContext.Provider>
     </ThemeProvider>

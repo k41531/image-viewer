@@ -24,7 +24,7 @@ export default function Layout({ children }: Props) {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          height: '95%',
+          height: 'calc(100% - 48px)',
         }}
       >
         <main

@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { useContext } from 'react';
-// import { Heading, Text, Box } from '@theme-ui/components';
+import { Flex } from '@theme-ui/components';
 import { albumContext } from '../contexts/AlbumContext';
 import EmptyImage from './EmptyImage';
 
@@ -24,14 +24,5 @@ export default function ImageFrame() {
     ) : (
       <EmptyImage />
     );
-  return (
-    <div
-      sx={{
-        display: 'flex',
-        height: '80%',
-      }}
-    >
-      {image}
-    </div>
-  );
+  return <Flex>{image}</Flex>;
 }
